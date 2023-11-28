@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Pagina inicial</h1>
+    <p class="p-digiteCep">Informe o CEP para buscar um endereço:</p>
+    <div>
+        <label>CEP:</label>
+        <input name="cep" type="text" id="cep" value="" onblur="options(this.value);">
+    </div>
+</body>
+
+<script>
+    const options = { method: 'GET', headers: { accept: 'application/json' } };
+
+    fetch('https://api.themoviedb.org/3/authentication', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+</script>
+
+</html>
