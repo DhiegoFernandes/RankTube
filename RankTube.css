@@ -1,0 +1,24 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.foto_filme {
+    width: 500px;
+    height: 300px;
+}
+
+
+
+
+.filme {
+    background-color: antiquewhite;
+}
+
+.info-filme {
+    background-color: aqua;
+}
+
+.descricao-filme {
+    background-color: blueviolet;
+}
