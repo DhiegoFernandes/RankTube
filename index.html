@@ -10,19 +10,36 @@
 </head>
 
 <body>
-    <h1>RankTube</h1>
-    <header>
-        <form id="form">
-            <input type="text" placeholder="Search" id="search" class="search">
+    <header class="header">
+        <div>
+            <h1 class="rankTube">RankTube</h1>
+        </div>
+        <form class="search" id="form">
+            <input class="input-search" type="text" placeholder="Pesquise Filmes" id="search" class="search">
         </form>
     </header>
 
 
 
-    <main id="main">
+
+    <!-- The overlay -->
+    <div id="myNav" class="overlay">
+
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <!-- Overlay content -->
+        <div class="overlay-content" id="overlay-content">
+            <h2>asdasd</h2>
+        </div>
+    </div>
+
+    
+    <main class="main" id="main">
         <div class="filme">
             <img class="foto_filme"
-                src="https://avatars.cloudflare.steamstatic.com/00bed920b83f1c826ea7b50d9231d4d01911aba1_full.jpg" alt="Image">
+                src="https://avatars.cloudflare.steamstatic.com/00bed920b83f1c826ea7b50d9231d4d01911aba1_full.jpg"
+                alt="Image">
 
             <div class="info-filme">
                 <h3>Titulo Filme</h3>
