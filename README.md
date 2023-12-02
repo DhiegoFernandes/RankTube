@@ -1,4 +1,6 @@
 # RankTube
-Site que consume API IMDb ratings
+Site que consume MDBb API
+The Movie Database
 
+Link para o site:
 https://dhiegofernandes.github.io/RankTube/
