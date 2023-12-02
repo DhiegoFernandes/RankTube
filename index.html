@@ -6,35 +6,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="RankTube.css">
-    <title>RankTube</title>
+    <title>RankTube - API TMDb</title>
 </head>
 
 <body>
     <header class="header">
-        <div>
-            <h1 class="rankTube">RankTube</h1>
+        <div class="rankTube-apresentacao">
+            <div>
+                <h1 class="rankTube">RankTube</h1>
+            </div>
+            <div>
+                <form class="search" id="form">
+                    <input type="text" placeholder="Pesquise Filmes" id="search" class="search">
+                </form>
+            </div>
         </div>
-        <form class="search" id="form">
-            <input class="input-search" type="text" placeholder="Pesquise Filmes" id="search" class="search">
-        </form>
     </header>
 
 
 
 
-    <!-- The overlay -->
+    <!--  Overlay -->
     <div id="myNav" class="overlay">
 
-        <!-- Button to close the overlay navigation -->
+        <!-- Fecha overlay -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
         <!-- Overlay content -->
         <div class="overlay-content" id="overlay-content">
-            <h2>asdasd</h2>
+            <!-- AQUI È INSERIDO O INNERHTML DA FUNCAO (openNav) -->
         </div>
     </div>
 
-    
+
     <main class="main" id="main">
         <div class="filme">
             <img class="foto_filme"
@@ -44,12 +48,6 @@
             <div class="info-filme">
                 <h3>Titulo Filme</h3>
                 <span class="green">NOTA</span>
-            </div>
-
-            <div class="descricao-filme">
-                <h3>Descrição</h3>
-                hshaehaehadhash hshaehaehadhashhshaehaehadhash hshaehaehadhash hshaehaehadhash hshaehaehadhash
-                hshaehaehadhash hshaehaehadhash
             </div>
         </div>
     </main>

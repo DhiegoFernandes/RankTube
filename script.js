@@ -27,27 +27,26 @@ function showMovies(data) {
     main.innerHTML = '';
 
     data.forEach(movie => {
-        const { title, poster_path, vote_average, overview, id } = movie;
+        const { title, poster_path, vote_average, id } = movie;
         const movieEl = document.createElement('div');
         movieEl.classList.add('filme');
         movieEl.innerHTML = `
              <img class="foto_filme" src="${imagemPoster_URL + poster_path}" alt="${title}">
 
                 <div class="info-filme">
-                    <h3>${title}</h3>
-                    <span class="${getColor(vote_average)}"> ${vote_average}</span>
+                    <h3 class="titulo-filme">${title}</h3>
+                    <span class="${getColor(vote_average)} nota-filme"> ${vote_average}</span>
+                   
+                    <button class="saiba-mais" id="${id}">Saiba Mais</button>
+      
                 </div>
-                
-                <div class="descricao-filme">
-                    <h3>Descricao</h3>
-                    ${overview}
-                 
-                </div>    
-               <button class="saiba-mais" id="${id}">Saiba Mais</button>
+           
+              
              `
 
         main.appendChild(movieEl); /* Coloca elemento filme no main  */
 
+        /*   funcao click botao saiba mais*/
         document.getElementById(id).addEventListener('click', () => {
             console.log(id)
             openNav(movie)
@@ -83,6 +82,14 @@ const overlayContent = document.getElementById('overlay-content');
 
 function openNav(movie) {
     let id = movie.id;
+    let overview = movie.overview;
+    let title = movie.title;
+    let vote_average = movie.vote_average;
+    let release_date = movie.release_date;
+    let backdrop_path = movie.backdrop_path;
+
+
+
     fetch(BASE_URL + '/movie/' + id + '/videos?' + api_key).then(res => res.json())
         .then(videoData => {
             console.log(BASE_URL + '/movie/' + id + '/videos?' + api_key)
@@ -92,23 +99,32 @@ function openNav(movie) {
                 document.getElementById("myNav").style.width = "100%";
                 if (videoData.results.length > 0) {
                     var embed = [];
-                    videoData.results.forEach(video => {
+
+
+                    /* videoData.results.forEach(video => { */
+                    for (const video of videoData.results) {
                         let { name, key, site } = video;
 
                         if (site == 'YouTube') {
-
                             embed.push(`
-
-                            <iframe 
-                            width="560" height="315" src="https://www.youtube.com/embed/${key}" 
-                            title="${name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
-                            gyroscope; picture-in-picture; web-share" allowfullscreen>
-                            </iframe>
+                            <h2 class="over-titulo-filme ${getColor(vote_average)}">${title}</h2>  
+                            <h2 class="over-dt-lancamento">Data de Lançamento: ${release_date}</h2>  
+                            <img class="foto_filme" src="${imagemPoster_URL + backdrop_path}" alt="${title}">           
+                            <h2 class="${getColor(vote_average)}"> ${vote_average}</h2>  
+                            <h2 class="over-descricao " >${overview}</h2>    
                            
-                        `)
-                        }
+                            <iframe 
+                                width="560" height="315" src="https://www.youtube.com/embed/${key}" 
+                                title="${name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; 
+                                gyroscope; picture-in-picture; web-share" allowfullscreen>
+                            </iframe>
+                        `);
 
-                    })
+                            // Quebra após a primeira iteração
+                            break;
+                        }
+                    }
+
 
                     overlayContent.innerHTML = embed.join('');
                 } else {
