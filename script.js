@@ -103,9 +103,14 @@ function openNav(movie) {
     let backdrop_path = movie.backdrop_path;
 
 
-
-    fetch(BASE_URL + '/movie/' + id + '/videos?' + api_key).then(res => res.json())
-        .then(videoData => {
+    fetch(`${BASE_URL}movie/${id}/videos`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${api_key}`
+        }
+    })
+    .then(res => res.json())
+    .then(videoData => {
             console.log(BASE_URL + '/movie/' + id + '/videos?' + api_key)
             console.log(videoData);
 
@@ -153,6 +158,9 @@ function openNav(movie) {
 
 function closeNav() {
     document.getElementById("myNav").style.width = "0%";
+
+    // limpa o overlay (Para o áudio do video)
+    document.getElementById('overlay-content').innerHTML = '';
 }
 
 
