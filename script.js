@@ -1,4 +1,4 @@
-const api_key = 'api_key=4f46962b363cfe26872ea0c32828207e';
+const api_key = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZjQ2OTYyYjM2M2NmZTI2ODcyZWEwYzMyODI4MjA3ZSIsIm5iZiI6MTcyNTkwNDY0OC43NzU2NzgsInN1YiI6IjY1NjY2YmM1M2Q3NDU0MDEwYmUxMDc5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.a8k8vSO6wv0miimt5YjU_vmn-WFMPP39fxyO8DuJ1F8';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 
@@ -14,17 +14,31 @@ const searchURL = BASE_URL + '/search/movie?' + api_key;
 
 getMovies(API_URL);
 
-function getMovies(url) {
-    fetch(url).then(res => res.json()).then(data => {
-        console.log(data.results);
 
+function getMovies(url) {
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${api_key}`,
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data.results);
         showMovies(data.results);
     })
+    .catch(error => console.error('Erro na requisição:', error));
 }
 
 
 function showMovies(data) {
     main.innerHTML = '';
+
+    if (!data) {
+        main.innerHTML = '<p>Nenhum resultado encontrado.</p>';
+        return;
+    }
 
     data.forEach(movie => {
         const { title, poster_path, vote_average, id } = movie;
@@ -156,5 +170,14 @@ function closeNav() {
    fetch('https://api.themoviedb.org/3/authentication', options)
        .then(response => response.json())
        .then(response => console.log(response))
-       .catch(err => console.error(err)); */
+       .catch(err => console.error(err)); 
+       
+       
+       
+    <!--     CHAVE
+    4f46962b363cfe26872ea0c32828207e
+
+    TOKEN
+    eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZjQ2OTYyYjM2M2NmZTI2ODcyZWEwYzMyODI4MjA3ZSIsInN1YiI6IjY1NjY2YmM1M2Q3NDU0MDEwYmUxMDc5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZLkTBWSOmHrYZbXw1nNmbhGOECstkGTfqtZj8VXuLqk
+*/
 
